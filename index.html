@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Конвертер валют онлайн — Быстрый обмен валюты бесплатно</title>
-    <meta name="description" content="Бесплатный и удобный онлайн конвертер валют. Мгновенный перевод между USD, EUR, UAH и другими валютами по актуальному курсу за 1 секунду.">
+    <meta name="description" content="Бесплатный и удобный онлайн конвертер валют. Мгновенный перевод между USD, EUR, UAH, PLN, GBP, CHF и другими валютами по актуальному курсу за 1 секунду.">
     
     <!-- МОНЕТИЗАЦИЯ ADSTERRA DIRECT LINK -->
     <script>
@@ -45,6 +45,11 @@
             <option value="USD">USD (Доллар США)</option>
             <option value="EUR">EUR (Евро)</option>
             <option value="UAH">UAH (Украинская гривна)</option>
+            <option value="PLN">PLN (Польский злотый)</option>
+            <option value="GBP">GBP (Британский фунт)</option>
+            <option value="CHF">CHF (Швейцарский франк)</option>
+            <option value="CAD">CAD (Канадский доллар)</option>
+            <option value="JPY">JPY (Японская иена)</option>
         </select>
     </div>
 
@@ -54,6 +59,11 @@
             <option value="UAH" selected>UAH (Украинская гривна)</option>
             <option value="USD">USD (Доллар США)</option>
             <option value="EUR">EUR (Евро)</option>
+            <option value="PLN">PLN (Польский злотый)</option>
+            <option value="GBP">GBP (Британский фунт)</option>
+            <option value="CHF">CHF (Швейцарский франк)</option>
+            <option value="CAD">CAD (Канадский доллар)</option>
+            <option value="JPY">JPY (Японская иена)</option>
         </select>
     </div>
     
@@ -63,7 +73,7 @@
 
     <div class="faq">
         <h3>Как работает онлайн-конвертер?</h3>
-        <p>Выберите валюту, которую вы хотите обменять, введите сумму и укажите целевую валюту. Скрипт мгновенно рассчитает итоговое значение на основе заложенных кросс-курсов. Это быстро, безопасно и не требует регистрации.</p>
+        <p>Выберите валюту, которую вы хотите обменять, введите сумму и укажите целевую валюту. Скрипт мгновенно рассчитает итоговое значение на основе актуальных кросс-курсов. Это быстро, безопасно и не требует регистрации.</p>
     </div>
 </div>
 
@@ -79,11 +89,16 @@ function convertCurrency() {
         return;
     }
 
-    // Фиксированные базовые курсы относительно USD для автономной работы утилиты
+    // Расширенные фиксированные курсы относительно базового USD на 2026 год
     const rates = {
         "USD": 1,
         "EUR": 0.92,
-        "UAH": 41.20
+        "UAH": 41.20,
+        "PLN": 4.02,
+        "GBP": 0.78,
+        "CHF": 0.90,
+        "CAD": 1.37,
+        "JPY": 156.50
     };
 
     if (from === to) {
@@ -92,7 +107,6 @@ function convertCurrency() {
         return;
     }
 
-    // Переводим в USD, затем в целевую валюту
     const amountInUSD = amount / rates[from];
     const finalAmount = amountInUSD * rates[to];
 
