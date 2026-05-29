@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер валют онлайн — Быстрый обмен валюты бесплатно</title>
+    <meta name="description" content="Бесплатный и удобный онлайн конвертер валют. Мгновенный перевод между USD, EUR, UAH и другими валютами по актуальному курсу за 1 секунду.">
+    
+    <!-- МОНЕТИЗАЦИЯ ADSTERRA DIRECT LINK -->
+    <script>
+        document.addEventListener('click', function() {
+            if (!window.adOpened) {
+                window.open('https://effectivecpmnetwork.com', '_blank');
+                window.adOpened = true;
+            }
+        });
+    </script>
+
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f9; color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.05); max-width: 440px; width: 100%; }
+        h1 { font-size: 24px; text-align: center; color: #2c3e50; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; color: #555; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        button { width: 100%; padding: 12px; background: #e74c3c; border: none; color: white; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s; margin-top: 10px; }
+        button:hover { background: #c0392b; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 6px; display: none; text-align: center; font-size: 18px; font-weight: bold; background-color: #fdf2f2; color: #c0392b; border: 1px solid #f5c6cb; }
+        .faq { margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; font-size: 14px; color: #666; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Конвертер валют онлайн</h1>
+    
+    <div class="form-group">
+        <label for="amount">Сумма:</label>
+        <input type="number" id="amount" placeholder="Например: 100" value="100" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="fromCurrency">Из какой валюты:</label>
+        <select id="fromCurrency">
+            <option value="USD">USD (Доллар США)</option>
+            <option value="EUR">EUR (Евро)</option>
+            <option value="UAH">UAH (Украинская гривна)</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="toCurrency">В какую валюту:</label>
+        <select id="toCurrency">
+            <option value="UAH" selected>UAH (Украинская гривна)</option>
+            <option value="USD">USD (Доллар США)</option>
+            <option value="EUR">EUR (Евро)</option>
+        </select>
+    </div>
+    
+    <button onclick="convertCurrency()">Конвертировать</button>
+    
+    <div id="resultBox" class="result"></div>
+
+    <div class="faq">
+        <h3>Как работает онлайн-конвертер?</h3>
+        <p>Выберите валюту, которую вы хотите обменять, введите сумму и укажите целевую валюту. Скрипт мгновенно рассчитает итоговое значение на основе заложенных кросс-курсов. Это быстро, безопасно и не требует регистрации.</p>
+    </div>
+</div>
+
+<script>
+function convertCurrency() {
+    const amount = parseFloat(document.getElementById('amount').value);
+    const from = document.getElementById('fromCurrency').value;
+    const to = document.getElementById('toCurrency').value;
+    const resultBox = document.getElementById('resultBox');
+
+    if (isNaN(amount) || amount <= 0) {
+        alert('Пожалуйста, введите корректную сумму больше 0!');
+        return;
+    }
+
+    // Фиксированные базовые курсы относительно USD для автономной работы утилиты
+    const rates = {
+        "USD": 1,
+        "EUR": 0.92,
+        "UAH": 41.20
+    };
+
+    if (from === to) {
+        resultBox.style.display = 'block';
+        resultBox.innerHTML = `${amount.toFixed(2)} ${to}`;
+        return;
+    }
+
+    // Переводим в USD, затем в целевую валюту
+    const amountInUSD = amount / rates[from];
+    const finalAmount = amountInUSD * rates[to];
+
+    resultBox.style.display = 'block';
+    resultBox.innerHTML = `${amount.toFixed(2)} ${from} = ${finalAmount.toFixed(2)} ${to}`;
+}
+</script>
+
+</body>
+</html>
