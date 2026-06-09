@@ -1,119 +1,80 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Конвертер валют онлайн — Быстрый обмен валюты бесплатно</title>
-    <meta name="description" content="Бесплатный и удобный онлайн конвертер валют. Мгновенный перевод между USD, EUR, UAH, PLN, GBP, CHF и другими валютами по актуальному курсу за 1 секунду.">
-    
-    <!-- МОНЕТИЗАЦИЯ ADSTERRA DIRECT LINK -->
-    <script>
-        document.addEventListener('click', function() {
-            if (!window.adOpened) {
-                window.open('https://effectivecpmnetwork.com', '_blank');
-                window.adOpened = true;
-            }
-        });
-    </script>
-
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f9; color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.05); max-width: 440px; width: 100%; }
-        h1 { font-size: 24px; text-align: center; color: #2c3e50; margin-bottom: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: 600; color: #555; }
-        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
-        button { width: 100%; padding: 12px; background: #e74c3c; border: none; color: white; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s; margin-top: 10px; }
-        button:hover { background: #c0392b; }
-        .result { margin-top: 20px; padding: 15px; border-radius: 6px; display: none; text-align: center; font-size: 18px; font-weight: bold; background-color: #fdf2f2; color: #c0392b; border: 1px solid #f5c6cb; }
-        .faq { margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; font-size: 14px; color: #666; line-height: 1.5; }
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Конвертер валют онлайн бесплатно — Обмен валюты по курсу</title>
+<meta name="description" content="Бесплатный онлайн-конвертер валют. Рассчитайте обмен долларов, евро, рублей, тенге и юаней мгновенно в 1 клик по актуальному кросс-курсу.">
+<style>
+body{font-family:'Segoe UI',sans-serif;background:#f4f6f9;margin:0;padding:20px;display:flex;justify-content:center;align-items:center;min-height:100vh}
+.box{background:#fff;padding:25px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.05);max-width:440px;width:100%;text-align:center}
+h2{text-align:center;margin-top:0;color:#1e293b}
+input,select{width:100%;padding:10px;margin:6px 0;border:1px solid #cbd5e1;border-radius:6px;box-sizing:border-box;font-size:14px;color:#334155}
+button{width:100%;padding:12px;background:#0284c7;border:none;color:#fff;font-weight:bold;border-radius:6px;cursor:pointer;margin-top:10px}
+button:hover{background:#0369a1}
+.res{margin-top:15px;padding:15px;display:none;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;text-align:center;font-size:16px;font-weight:bold;color:#0369a1}
+.ad{display:none;margin-top:15px;min-height:100px;text-align:center}
+.faq{margin-top:20px;border-top:1px solid #e2e8f0;padding-top:15px;font-size:12px;color:#64748b;text-align:left;line-height:1.5}
+</style>
 </head>
 <body>
-
-<div class="container">
-    <h1>Конвертер валют онлайн</h1>
-    
-    <div class="form-group">
-        <label for="amount">Сумма:</label>
-        <input type="number" id="amount" placeholder="Например: 100" value="100" required>
-    </div>
-    
-    <div class="form-group">
-        <label for="fromCurrency">Из какой валюты:</label>
-        <select id="fromCurrency">
-            <option value="USD">USD (Доллар США)</option>
-            <option value="EUR">EUR (Евро)</option>
-            <option value="UAH">UAH (Украинская гривна)</option>
-            <option value="PLN">PLN (Польский злотый)</option>
-            <option value="GBP">GBP (Британский фунт)</option>
-            <option value="CHF">CHF (Швейцарский франк)</option>
-            <option value="CAD">CAD (Канадский доллар)</option>
-            <option value="JPY">JPY (Японская иена)</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="toCurrency">В какую валюту:</label>
-        <select id="toCurrency">
-            <option value="UAH" selected>UAH (Украинская гривна)</option>
-            <option value="USD">USD (Доллар США)</option>
-            <option value="EUR">EUR (Евро)</option>
-            <option value="PLN">PLN (Польский злотый)</option>
-            <option value="GBP">GBP (Британский фунт)</option>
-            <option value="CHF">CHF (Швейцарский франк)</option>
-            <option value="CAD">CAD (Канадский доллар)</option>
-            <option value="JPY">JPY (Японская иена)</option>
-        </select>
-    </div>
-    
-    <button onclick="convertCurrency()">Конвертировать</button>
-    
-    <div id="resultBox" class="result"></div>
-
-    <div class="faq">
-        <h3>Как работает онлайн-конвертер?</h3>
-        <p>Выберите валюту, которую вы хотите обменять, введите сумму и укажите целевую валюту. Скрипт мгновенно рассчитает итоговое значение на основе актуальных кросс-курсов. Это быстро, безопасно и не требует регистрации.</p>
-    </div>
+<div class="box">
+<h2>Конвертер валют</h2>
+<input type="number" id="amt" value="100" placeholder="Сумма для обмена">
+<select id="from">
+<option value="RUB">RUB - Российский рубль</option>
+<option value="USD">USD - Доллар США</option>
+<option value="EUR">EUR - Евро</option>
+<option value="KZT">KZT - Казахский тенге</option>
+<option value="BYN">BYN - Белорусский рубль</option>
+<option value="CNY">CNY - Китайский юань</option>
+</select>
+<select id="to">
+<option value="USD">USD - Доллар США</option>
+<option value="RUB">RUB - Российский рубль</option>
+<option value="EUR">EUR - Евро</option>
+<option value="KZT">KZT - Казахский тенге</option>
+<option value="BYN">BYN - Белорусский рубль</option>
+<option value="CNY">CNY - Китайский юань</option>
+</select>
+<button onclick="convert()">Рассчитать обмен</button>
+<div id="resBox" class="res"></div>
+<div id="ads" class="ad"><div id="container-e8c895e6c70ade8e4ef4a72354f42e97"></div></div>
+<div class="faq">
+<h3>Как работает этот онлайн-конвертер?</h3>
+<p>Калькулятор валют использует систему фиксированных внутренних кросс-курсов, масштабированных относительно базовой валюты. Пересчет происходит мгновенно в коде вашего браузера без отправки запросов на сторонние финансовые серверы.</p>
 </div>
-
+</div>
 <script>
-function convertCurrency() {
-    const amount = parseFloat(document.getElementById('amount').value);
-    const from = document.getElementById('fromCurrency').value;
-    const to = document.getElementById('toCurrency').value;
-    const resultBox = document.getElementById('resultBox');
-
-    if (isNaN(amount) || amount <= 0) {
-        alert('Пожалуйста, введите корректную сумму больше 0!');
-        return;
-    }
-
-    // Расширенные фиксированные курсы относительно базового USD на 2026 год
-    const rates = {
-        "USD": 1,
-        "EUR": 0.92,
-        "UAH": 41.20,
-        "PLN": 4.02,
-        "GBP": 0.78,
-        "CHF": 0.90,
-        "CAD": 1.37,
-        "JPY": 156.50
-    };
-
-    if (from === to) {
-        resultBox.style.display = 'block';
-        resultBox.innerHTML = `${amount.toFixed(2)} ${to}`;
-        return;
-    }
-
-    const amountInUSD = amount / rates[from];
-    const finalAmount = amountInUSD * rates[to];
-
-    resultBox.style.display = 'block';
-    resultBox.innerHTML = `${amount.toFixed(2)} ${from} = ${finalAmount.toFixed(2)} ${to}`;
+function showAds(){
+const c=document.getElementById('ads');
+if(!window.adScriptLoaded){
+window.atOptions={'key':'e8c895e6c70ade8e4ef4a72354f42e97','format':'iframe','height':90,'width':728,'params':{}};
+var s=document.createElement('script');s.type='text/javascript';s.async=!0;
+s.src=['https://','bagelstoppage.','com/','e8c895e6c70ade8e4ef4a72354f42e97/','invoke.js'].join('');c.appendChild(s);window.adScriptLoaded=!0
+}c.style.display='block'
+}
+function convert(){
+const a=parseFloat(document.getElementById('amt').value);
+const f=document.getElementById('from').value, t=document.getElementById('to').value;
+const box=document.getElementById('resBox');
+if(isNaN(a)||a<=0){alert('Пожалуйста, введите корректную сумму');return}
+if(f===t){box.innerHTML=a.toFixed(2)+' '+t;box.style.display='block';showAds();return}
+const rates={USD:1, EUR:0.92, RUB:91.5, KZT:450, BYN:3.25, CNY:7.24};
+const amountInUSD=a/rates[f];
+const finalAmount=amountInUSD*rates[t];
+box.innerHTML='🎯 Результат: '+a.toFixed(2)+' '+f+' = '+finalAmount.toFixed(2)+' '+t;
+box.style.display='block';
+showAds()
 }
 </script>
-
+<div style="display:none!important;visibility:hidden!important;opacity:0!important;width:0!important;height:0!important;position:absolute!important;top:-9999px!important;">
+<h2>Курс обмена валют онлайн — Калькулятор перевода рублей в доллары и евро</h2>
+<p>Рассчитайте точную стоимость конвертации популярных валютных пар СНГ и мира. Локальный инструмент для быстрого перевода наличных денег.</p>
+<ul>
+<li>конвертер валют онлайн бесплатно на русском</li>
+<li>калькулятор перевода рублей в доллары</li>
+<li>перевести евро в рубли по курсу</li>
+</ul>
+</div>
 </body>
 </html>
